@@ -15,8 +15,8 @@ scheme_name="XXXXX"
 # 工程中Target对应的配置plist文件名称, Xcode默认的配置文件为Info.plist
 info_plist_name="Info"
 
-#蒲公英
-pgyerUKey="XXXXXXX"
+# 蒲公英   (若果使用了可以蒲公英可以在此填写相关参数)
+pgyerUKey="XXXXX"
 pgyerApiKey="XXXXX"
 pgyerDownloadUrl="https://www.pgyer.com/XXXXX"
 
@@ -159,14 +159,25 @@ fi
 echo "\033[36;1m使用LPAutoPackageScript打包总用时: ${SECONDS}s \033[0m"
 
 
+
 #ipa上传
 #通过api上传到蒲公英当中
+
+if [ "$pgyerUKey" = "XXXXX" ] ; then
+exit 1
+else
+
 echo "\033[32m*************************  开始上传ipa至蒲公英  *************************  \033[0m"
 
 RESULT=$(curl -F "file=@$export_ipa_path/$ipa_name.ipa" -F "uKey=$pgyerUKey" -F "_api_key=$pgyerApiKey" -F "publishRange=2" http://www.pgyer.com/apiv1/app/upload)
 echo $RESULT
 echo "\033[32m*************************  上传完成  *************************  \033[0m"
 echo "\033[32m*************************  下载网址： ${pgyerDownloadUrl}  *************************  \033[0m"
+
+exit 1
+fi
+
+
 
 
 
