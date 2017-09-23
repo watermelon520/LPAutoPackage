@@ -1,0 +1,2 @@
+# LPAutoPackage
+支持Xcode9和iOS11的iOS自动打包脚本
